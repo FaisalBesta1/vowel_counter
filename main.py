@@ -1,20 +1,25 @@
-morse_code_dict = {
-    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
-    'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-',
-    'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..',
-    '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...',
-    '8': '---..', '9': '----.', '.': '.-.-.-', ',': '--..--', '?': '..--..', ' ': ' '
-}
+VOWELS = ["a", "e", "i", "o", "u"]
 
-string = input("What do you want to turn to morse?: ")
+print("Vowel Counter!\n")
 
-string_list = list(string)
+counting = True
 
-translated_string = ""
-for letter in string_list:
-    if letter == ' ':
-        translated_string += morse_code_dict[letter.title()]
-    else:
-        translated_string += f'{morse_code_dict[letter.title()]}/'
-
-print(translated_string)
+while counting:
+    word_or_sentence = list(input("What word/sentence would you like counted?: ").lower())
+    total = 0
+    for letter in word_or_sentence:
+        if letter in VOWELS:
+            total += 1
+    print(total)
+    check_to_continue = True
+    while check_to_continue:
+        continue_counter = input("Do you have more word/sentences to be counted?: y or n\n").lower()
+        if continue_counter == "y" or continue_counter == "n":
+            check_to_continue = False
+            if continue_counter == "y":
+                counting = True
+            elif continue_counter == "n":
+                counting = False
+        else:
+            print("please input a valid letter")
+            check_to_continue = True
